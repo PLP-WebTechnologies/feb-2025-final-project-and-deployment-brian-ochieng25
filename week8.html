@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DENTOZ B FRAGRANCES</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e67e22;
+            --light: #f9f9f9;
+            --dark: #1a1a1a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background: var(--light);
+        }
+
+        /* Navigation */
+        header {
+            background: var(--primary);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .burger {
+            display: none;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* Page Sections */
+        .page {
+            display: none;
+            padding: 8rem 2rem 2rem;
+            min-height: 100vh;
+            animation: fadeIn 0.5s;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Home Page */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://picsum.photos/1600/900') center/cover;
+            color: white;
+            margin: -2rem;
+            border-radius: 10px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .price {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        /* About Page */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Contact Page */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+
+        button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #d35400;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                right: -100%;
+                top: 4rem;
+                flex-direction: column;
+                background: var(--primary);
+                width: 100%;
+                text-align: center;
+                padding: 2rem;
+                transition: 0.3s;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .burger {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#home" class="logo">DENTOZ B</a>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="burger">☰</div>
+        </nav>
+    </header>
+
+    <!-- Home Page -->
+    <section id="home" class="page active">
+        <div class="hero">
+            <h1>Luxury Fragrances</h1>
+            <p>Experience the essence of elegance</p>
+        </div>
+        <div class="product-grid" id="productContainer"></div>
+    </section>
+
+    <!-- About Page -->
+    <section id="about" class="page">
+        <div class="about-content">
+            <h2>Our Story</h2>
+            <p>Founded in 2023, DENTOZ B Fragrances combines modern artistry with traditional perfumery techniques. Our master perfumers craft each scent using only the finest ingredients sourced from around the world.</p>
+            <h3>Our Philosophy</h3>
+            <p>We believe in creating fragrances that tell a story and evoke emotion. Every bottle represents hours of meticulous craftsmanship and a passion for olfactory excellence.</p>
+        </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section id="contact" class="page">
+        <form class="contact-form" id="contactForm">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label>Message:</label>
+                <textarea id="message" rows="5" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <script>
+        // Fragrance Data
+        const fragrances = [
+            { name: "Midnight Essence", price: 129.99, description: "Dark, mysterious blend of oud and sandalwood" },
+            { name: "Golden Amber", price: 149.99, description: "Warm oriental notes with vanilla base" },
+            { name: "Ocean Breeze", price: 109.99, description: "Fresh aquatic scent with citrus top notes" },
+            { name: "Royal Jasmine", price: 139.99, description: "Floral bouquet with jasmine absolute" },
+            { name: "Tobacco Vanille", price: 159.99, description: "Rich blend of tobacco leaf and vanilla" },
+            { name: "Citrus Splash", price: 99.99, description: "Zesty lemon and bergamot combination" }
+        ];
+
+        // Generate Products
+        function generateProducts() {
+            const container = document.getElementById('productContainer');
+            container.innerHTML = fragrances.map(fragrance => `
+                <div class="product-card">
+                    <h3>${fragrance.name}</h3>
+                    <div class="price">$${fragrance.price.toFixed(2)}</div>
+                    <p>${fragrance.description}</p>
+                </div>
+            `).join('');
+        }
+
+        // Mobile Menu Toggle
+        const burger = document.querySelector('.burger');
+        const navLinks = document.querySelector('.nav-links');
+
+        burger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            burger.classList.toggle('active');
+        });
+
+        // Page Navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.getAttribute('href').slice(1);
+                showPage(pageId);
+                navLinks.classList.remove('active');
+            });
+        });
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // Form Validation
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (validateForm()) {
+                alert('Message sent successfully!');
+                contactForm.reset();
+            }
+        });
+
+        function validateForm() {
+            const email = document.getElementById('email').value;
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert('Please enter a valid email address');
+                return false;
+            }
+            return true;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            generateProducts();
+            showPage('home');
+        });
+    </script>
+</body>
+</html>
